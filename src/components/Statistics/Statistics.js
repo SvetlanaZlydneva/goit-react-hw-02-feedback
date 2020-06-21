@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import StatisticsItem from './StatisticsItem';
 import styles from './Statistics.module.css';
 
-const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (
-  <ul className={styles.list}>
-    <li>Good: {good}</li>
-    <li>Neutral: {neutral}</li>
-    <li>Bad: {bad}</li>
-    <li>Total: {total}</li>
-    {positivePercentage > 0 && (
-      <li>Positive feedback: {positivePercentage}%</li>
-    )}
-  </ul>
-);
+class Statistics extends Component {
+  static props = {
+    statistics: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
+  };
 
-Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.number.isRequired,
-};
+  render() {
+    const { statistics } = this.props;
+    return (
+      <ul className={styles.list}>
+        {statistics.map((statisticItem, index) => (
+          <li className={styles.item} key={index}>
+            <StatisticsItem name={statisticItem[0]} value={statisticItem[1]} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
 
 export default Statistics;

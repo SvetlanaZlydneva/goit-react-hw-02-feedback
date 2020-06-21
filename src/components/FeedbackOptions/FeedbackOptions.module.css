@@ -12,3 +12,9 @@
   border: 1px solid #d3d3d3;
   border-radius: 10px;
 }
+.buttons button::first-letter {
+  text-transform: uppercase;
+}
+.buttons button:active {
+  background-color: #4169e1;
+}
