@@ -12,9 +12,10 @@ class App extends Component {
     bad: 0,
   };
 
-  handleChangeStatistics = stateName => {
+  handleChangeStatistics = event => {
+    const { name } = event.currentTarget;
     this.setState(prevState => ({
-      [stateName]: prevState[stateName] + 1,
+      [name]: prevState[name] + 1,
     }));
   };
 
